@@ -1,0 +1,150 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 8,
+  "modules-left": [
+    "custom/spacer",
+    "custom/spacer",
+    "custom/spacer",
+    "custom/term",
+    "custom/browser",
+    "custom/sep",
+    "hyprland/workspaces",
+    "custom/sep"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "temperature",
+    "pulseaudio",
+    "network#ethernet",
+    "bluetooth",
+    "clock",
+    "custom/power"
+  ],
+  "cpu": {
+    "interval": 2,
+    "format": "🔲 {usage}%",
+    "on-click": "ghostty -e htop"
+  },
+  "memory": {
+    "interval": 5,
+    "format": "🧮 {percentage}%",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "tooltip-format": "{used:0.1f}G / {total:0.1f}G  (swap {swapPercentage}%)"
+  },
+  "temperature": {
+    "interval": 2,
+    "critical-threshold": 80,
+    "format": "🌡️ {temperatureC}°C",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "show-special": true,
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "mychat": "💬",
+      "mypasswd": "🔑",
+      "mynote": "📔",
+      "myedit": "📝",
+      "mysticky": "📑",
+      "myfiler": "📁",
+      "default": "?"
+    }
+  },
+  "hyprland/window": {
+    "max-length": 50
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pidof wiremix >/dev/null || hyprctl dispatch exec \"[float; size (monitor_w*0.9) (monitor_h*0.9); center] kitty -e wiremix\""
+  },
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%m-%d %H:%M}",
+    "format-alt": "{:%Y-%m-%d (%a) %H:%M}",
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "network#ethernet": {
+    "interface": "en*",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "on-click": "pidof nmtui >/dev/null || hyprctl dispatch exec \"[float; size (monitor_w*0.9) (monitor_h*0.9); center] kitty -e nmtui\""
+  },
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "on-click": "pidof bluetui >/dev/null || hyprctl dispatch exec \"[float; size (monitor_w*0.9) (monitor_h*0.9); center] kitty -e bluetui\""
+  },
+  "custom/sep": {
+    "format": "│",
+    "tooltip": false
+  },
+  "custom/spacer": {
+    "format": "    ",
+    "tooltip": false
+  },
+  "custom/term": {
+    "format": "💻",
+    "tooltip-format": "Terminal",
+    "on-click": "hyprctl dispatch exec '[workspace $(hyprctl activeworkspace -j | jq -r .id) silent] ghostty'"
+  },
+  "custom/browser": {
+    "format": "🌐",
+    "tooltip-format": "Browser",
+    "on-click": "hyprctl dispatch exec '[workspace $(hyprctl activeworkspace -j | jq -r .id) silent] google-chrome-stable --new-window'"
+  },
+  "custom/power": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "wlogout"
+  }
+}

@@ -1,0 +1,26 @@
+# reload: ctrl+shift+,
+# theme
+theme = Dark Pastel
+background-opacity = 0.65
+background-opacity-cells = true
+
+# others
+gtk-single-instance = false
+shell-integration = detect
+window-decoration = false
+confirm-close-surface = false
+
+# keybinds
+## resize
+keybind = ctrl+^=increase_font_size:1
+## split vertical window (:vs)
+keybind = ctrl+a>:>v>s=new_split:right
+## split horizontal window (:sp)
+keybind = ctrl+a>:>s>p=new_split:down
+## close window (:q)
+keybind = ctrl+a>:>q=close_surface
+## move split window (h/j/k/l)
+keybind = ctrl+a>h=goto_split:left
+keybind = ctrl+a>j=goto_split:bottom
+keybind = ctrl+a>k=goto_split:top
+keybind = ctrl+a>l=goto_split:right

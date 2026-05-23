@@ -1,0 +1,27 @@
+[user]
+name = Tetsuya Morimoto
+#email = SET YOUR EMAIL
+[color]
+ui = auto
+[alias]
+co = checkout
+di = diff
+st = status
+br = branch
+ci = commit
+l  = log --decorate --oneline
+lg = log --decorate --oneline --graph
+ls = log --decorate --oneline --stat
+[core]
+editor = vim
+[diff]
+algorithm = histogram
+colorMoved = plain
+mnemonicPrefix = true
+renames = true
+[commit]
+verbose = true
+[push]
+default = simple
+[pull]
+rebase = true
